@@ -126,6 +126,7 @@ BIN = libapps$(LIBEXT)
 
 all: $(BIN)
 .PHONY: $(INSTALLED_APPS) context depend clean distclean
+.NOTPARALLEL: $(INSTALLED_APPS)
 
 $(INSTALLED_APPS):
 	$(Q) $(MAKE) -C $@ TOPDIR="$(TOPDIR)" APPDIR="$(APPDIR)"
