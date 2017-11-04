@@ -1239,7 +1239,9 @@ static void spi_setbits(FAR struct spi_dev_s *dev, int nbits)
 static uint16_t spi_send(FAR struct spi_dev_s *dev, uint16_t wd)
 {
   FAR struct stm32_spidev_s *priv = (FAR struct stm32_spidev_s *)dev;
+#ifdef CONFIG_DEBUG_SPI
   uint32_t regval;
+#endif
   uint16_t ret;
 
   DEBUGASSERT(priv && priv->spibase);
@@ -1249,7 +1251,11 @@ static uint16_t spi_send(FAR struct spi_dev_s *dev, uint16_t wd)
 
   /* Check and clear any error flags (Reading from the SR clears the error flags) */
 
+#ifdef CONFIG_DEBUG_SPI
   regval = spi_getreg(priv, STM32_SPI_SR_OFFSET);
+#else
+  (void) spi_getreg(priv, STM32_SPI_SR_OFFSET);
+#endif
   spivdbg("Sent: %04x Return: %04x Status: %02x\n", wd, ret, regval);
 
   return ret;
