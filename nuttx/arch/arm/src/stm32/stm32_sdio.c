@@ -2668,7 +2668,6 @@ static int stm32_dmasendsetup(FAR struct sdio_dev_s *dev,
 {
   struct stm32_dev_s *priv = (struct stm32_dev_s *)dev;
   uint32_t dblocksize;
-  int ret = -EINVAL;
 
   DEBUGASSERT(priv != NULL && buffer != NULL && buflen > 0);
   DEBUGASSERT(stm32_dmapreflight(dev, buffer, buflen) == 0);
