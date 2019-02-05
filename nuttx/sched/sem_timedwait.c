@@ -223,7 +223,7 @@ int sem_timedwait(FAR sem_t *sem, FAR const struct timespec *abstime)
    * with a valid timeout.
    */
 
-  if (abstime->tv_sec < 0 || abstime->tv_nsec > 1000000000)
+  if (abstime->tv_nsec > 1000000000)
     {
       err = EINVAL;
       goto errout_disabled;

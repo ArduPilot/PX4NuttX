@@ -597,7 +597,6 @@ static int rtc_interrupt(int irq, void *context)
 int up_rtcinitialize(void)
 {
   uint32_t regval;
-  int ret;
 
   /* Clocking for the PWR block must be provided.  However, this is done
    * unconditionally in stm32f40xxx_rcc.c on power up.  This done unconditionally
@@ -626,7 +625,7 @@ int up_rtcinitialize(void)
     {
       /* Perform the one-time setup of the LSE clocking to the RTC */
 
-      ret = rtc_setup();
+      (void) rtc_setup();
 
       /* Remember that the RTC is initialized */
 
@@ -636,7 +635,7 @@ int up_rtcinitialize(void)
     {
       /* RTC already set-up, just resume normal operation */
 
-      ret = rtc_resume();
+      (void) rtc_resume();
 
       rtc_dumpregs("Did resume");
     }

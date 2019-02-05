@@ -97,12 +97,12 @@ static struct fat_format_s g_fmt = FAT_FORMAT_INITIALIZER;
 
 int create_ramdisk(void)
 {
-  char *pbuffer;
+  uint8_t *pbuffer;
   int ret;
 
   /* Allocate a buffer to hold the file system image. */
 
-  pbuffer = (char*)malloc(BUFFER_SIZE);
+  pbuffer = (uint8_t*)malloc(BUFFER_SIZE);
   if (!pbuffer)
     {
       printf("create_ramdisk: Failed to allocate ramdisk of size %d\n",

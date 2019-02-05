@@ -67,8 +67,8 @@
  * Private Function Prototypes
  ********************************************************************************/
 
-static void inline timer_sigqueue(FAR struct posix_timer_s *timer);
-static void inline timer_restart(FAR struct posix_timer_s *timer, uint32_t itimer);
+static inline void timer_sigqueue(FAR struct posix_timer_s *timer);
+static inline void timer_restart(FAR struct posix_timer_s *timer, uint32_t itimer);
 static void timer_timeout(int argc, uint32_t itimer);
 
 /********************************************************************************
@@ -93,7 +93,7 @@ static void timer_timeout(int argc, uint32_t itimer);
  *
  ********************************************************************************/
 
-static void inline timer_sigqueue(FAR struct posix_timer_s *timer)
+static inline void timer_sigqueue(FAR struct posix_timer_s *timer)
 {
   siginfo_t info;
 
@@ -133,7 +133,7 @@ static void inline timer_sigqueue(FAR struct posix_timer_s *timer)
  *
  ********************************************************************************/
 
-static void inline timer_restart(FAR struct posix_timer_s *timer, uint32_t itimer)
+static inline void timer_restart(FAR struct posix_timer_s *timer, uint32_t itimer)
 {
   /* If this is a repetitive timer, then restart the watchdog */
 

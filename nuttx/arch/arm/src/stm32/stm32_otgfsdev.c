@@ -2082,10 +2082,9 @@ static void stm32_usbreset(struct stm32_usbdev_s *priv)
 static inline void stm32_ep0out_testmode(FAR struct stm32_usbdev_s *priv,
                                          uint16_t index)
 {
-  uint32_t regval;
   uint8_t testmode;
 
-  regval = stm32_getreg(STM32_OTGFS_DCTL);
+  (void) stm32_getreg(STM32_OTGFS_DCTL);
 
   testmode = index >> 8;
   switch (testmode)
@@ -4476,7 +4475,6 @@ static int stm32_ep_submit(FAR struct usbdev_ep_s *ep, FAR struct usbdev_req_s *
 static int stm32_ep_cancel(FAR struct usbdev_ep_s *ep, FAR struct usbdev_req_s *req)
 {
   FAR struct stm32_ep_s *privep = (FAR struct stm32_ep_s *)ep;
-  FAR struct stm32_usbdev_s *priv;
   irqstate_t flags;
 
 #ifdef CONFIG_DEBUG
@@ -4488,7 +4486,6 @@ static int stm32_ep_cancel(FAR struct usbdev_ep_s *ep, FAR struct usbdev_req_s *
 #endif
 
   usbtrace(TRACE_EPCANCEL, privep->epphy);
-  priv = privep->dev;
 
   flags = irqsave();
 
